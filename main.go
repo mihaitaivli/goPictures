@@ -10,6 +10,7 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", home)
 	r.HandleFunc("/contact", contact)
+	r.HandleFunc("/faq", faq)
 
 	err := http.ListenAndServe(":3000", r)
 	if err != nil {
@@ -25,4 +26,9 @@ func home (w http.ResponseWriter, r *http.Request) {
 func contact (w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	fmt.Fprint(w, "<p>To contact us please send an email to <a href=\"mailto:support@localhost.com\">support@localhost.com</a></p>")
+}
+
+func faq (w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html")
+	fmt.Fprint(w, "<h3>FAQ</h3><ul><li>Will I ever get better?</li></ul>")
 }
