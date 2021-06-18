@@ -2,14 +2,17 @@ package main
 
 import (
 	"fmt"
+	"github.com/gorilla/mux"
 	"net/http"
 )
 
 func main() {
-	mux := &http.ServeMux{}
-	mux.HandleFunc("/", rootHandle)
+	r := mux.NewRouter()
+	r.HandleFunc("/", rootHandle)
+	r.HandleFunc("/contact", rootHandle)
 
-	err := http.ListenAndServe(":3000", mux)
+
+	err := http.ListenAndServe(":3000", r)
 	if err != nil {
 		panic("Something's wrong, exiting...")
 	}
